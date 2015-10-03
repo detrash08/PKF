@@ -8,8 +8,8 @@
 			types: [typeCode1, typeCode2]	// pk types (MAX 2)
 		}
 
-		dmg : {			//<- dmg object	
-
+		stat : {			//<- dmg object	
+		
 		}
 	}
 */
@@ -31,9 +31,12 @@ function getBonus(pk1, pk2) {
 }
 
 function getDmg(pk1, pk2) {
-	var dmgBonus = getBonus(pk1, pk2);
+	var dmgBonus = pk1.base.baseDmg * getBonus(pk1, pk2);
+	return dmgBonus();
 }
 
 function attack(pk1, pk2){
+	var dmg = getDmg(pk1, pk2);
 
+	pk2.base.resLp -=  (pk2.base.isExhausted = !(pk2.base.canFight =  dmg < pk2.base.resLp) ?pk2.base.resLp: dmg;
 }
