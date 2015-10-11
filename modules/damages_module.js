@@ -36,12 +36,10 @@ function init(data_module, stat_module) {
 }
 
 //Calculates STAB: Same-type attack bonus
-function getStab(pk1, pk2, atkNumber) {
-	var atkType =  pk1.base.attacks[atkNumber].type;
-	
-	if(pk2.base.types[atkType] != undefined)
-		return 1.5;
-
+function getStab(pk1, pk2) {
+	for(var t1 in pk1.types)
+		if(pk1.types[t1] != undefined)
+			return 1.5;
 	return 1;
 }
 function getBaseDamage(pk1, pk2){
